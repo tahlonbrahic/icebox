@@ -36,7 +36,7 @@ in
       description = "A modified samsung-laptop kernel module that can boot from EFI systems";
       homepage = "https://github.com/tahlonbrahic/linux";
       license = lib.licenses.gpl2;
-      maintainers = with lib.maintainers; [tahlonbrahic];
+      maintainers = [];
       platforms = lib.platforms.linux;
     };
   }
