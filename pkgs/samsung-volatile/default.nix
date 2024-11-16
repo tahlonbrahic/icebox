@@ -12,7 +12,7 @@ in
       owner = "TahlonBrahic";
       repo = "samsung-volatile";
       rev = "refs/heads/main";
-      hash = "sha256-kiqmFDLTP32dVX4NdThARhr2bbDIFKunrcWIOTPMAYU=";
+      hash = "sha256-2+507B3WYDLKqGZlbduA5Mo2qeNWOFyzRnMlTu97kmQ=";
     };
 
     hardeningDisable = ["pic" "format"];

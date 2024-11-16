@@ -1,3 +1,3 @@
 {pkgs ? import <nixpkgs> {}}: {
-  samsung-volatile = pkgs.callPackage ./pkgs/samsung-volatile/flake.nix {};
+  samsung-volatile = pkgs.callPackage ./pkgs/samsung-volatile {};
 }
