@@ -6,7 +6,6 @@ in
     pname = "samsung-galaxybook-extras";
     version = "0.9";
     name = "${pname}-${version}-${kernel.modDirVersion}";
-
     passthru.moduleName = "samsung-galaxybook-extras";
 
     src = fetchFromGitHub {
@@ -19,32 +18,19 @@ in
     hardeningDisable = ["pic" "format"];
     nativeBuildInputs = kernel.moduleBuildDependencies;
 
-    kernel = kernel.dev;
-    kernelVersion = kernel.modDirVersion;
-
-    makeFlags =
-      kernel.makeFlags
-      ++ [
-        "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
-      ];
-
-    buildPhase = ''
-      make -C /lib/modules/`uname -r`/build M=$PWD
-    '';
-
-    installPhase = ''
-      runHook preInstall
-      install -D samsung-galaxybook.ko -t $out/lib/modules/${kernel.modDirVersion}/extra
-      runHook postInstall
-    '';
+    makeFlags = [
+      "KERNELRELEASE=${kernel.modDirVersion}"
+      "KDIR=${kernel.dev}/lib/modules/${kernel.modDirVersion}/build"
+      "INSTALL_MOD_PATH=$(out)"
+    ];
 
     enableParallelBuilding = true;
 
-    meta = with lib; {
+    meta = {
       description = "A samsung galaxybook kernel module made for the Galaxy Book 2";
       homepage = "https://github.com/joshuagrisham/samsung-galaxybook-extras";
-      license = licenses.gpl2;
+      license = lib.licenses.gpl2;
       maintainers = [];
-      platforms = platforms.linux;
+      platforms = lib.platforms.linux;
     };
   }
